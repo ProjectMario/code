@@ -22,8 +22,6 @@ String TileMap[12] =
 };
 class Player
 {
-private:
-	int ground = 145;
 public:
   float coorX, coorY;
   FloatRect rect;
@@ -62,13 +60,9 @@ public:
 		}
 
     rect.top += coorY * time;
+		onGround = false;
 		collision(1);
-    if(rect.top > ground)
-    {
-      rect.top = ground;
-      coorY = 0;
-      onGround = true;
-    }
+
     frameCounter += 0.02 * time;
     if(frameCounter > 4)
     {
@@ -97,6 +91,7 @@ public:
 			rect.left ++;
 		if(rect.left > 1588)
 			rect.left --;
+		
     animation.setPosition(rect.left, rect.top);
 
     coorX = 0;
@@ -127,8 +122,8 @@ public:
 	}
 	void collision(int num)
   {
-    for (int i = rect.top/32  ; i < (rect.top + rect.height)/32 ; i++)
-    for (int j = rect.left/32 ; j < (rect.left + rect.width)/32 ; j++) {
+    for (int i = rect.top/16  ; i < (rect.top + rect.height)/16 ; i++)
+    for (int j = rect.left/16 ; j < (rect.left + rect.width)/16 ; j++) {
       if ((TileMap[i][j]=='G') || (TileMap[i][j]=='1') ||
           (TileMap[i][j]=='2') || (TileMap[i][j]=='3') ||
           (TileMap[i][j]=='4') || (TileMap[i][j]=='L') ||
@@ -136,22 +131,22 @@ public:
 					{
 	        if (coorY > 0 && num == 1)
 					{
-						rect.top  = i*32 - rect.height;
+						rect.top  = i*16 - rect.height;
 						coorY = 0;
 						onGround = true;
 					}
 	        if (coorY < 0 && num == 1)
 				  {
-						rect.top  = i*32 + 32;
+						rect.top  = i*16 + 16;
 						coorY = 0;
 				  }
 	        if (coorX > 0 && num == 0)
 				  {
-						 rect.left = j*32 - rect.width;
+						 rect.left = j*16 - rect.width;
 				  }
 	        if (coorX < 0 && num == 0)
 				  {
-						rect.left = j*32 + 32	;
+						rect.left = j*16 + 16;
 				  }
       }
 
@@ -224,13 +219,15 @@ int main()
         }
 			//	if(player.animation.getPosition().x > 1450)
 			//	{
-			//		text.setString("");
+			//		text.setString("ты пидор");
 			//		text.setPosition(view.getCenter().x, view.getCenter().y);
 			//		window.draw(text);
 			//	}
         player.update(time);
 				window.setView(view);
         window.clear();
+
+       	window.draw(player.rectMap);
 				for(int i = 0 ; i < 12 ; i++)
 			    for(int j = 0 ; j < 100 ; j++)
 					{
@@ -242,10 +239,9 @@ int main()
 			      if(TileMap[i][j] == ' ')
 						 continue;
 
-			      rectangle.setPosition(j*32, i*32);
+			      rectangle.setPosition(j, i);
 			      window.draw(rectangle);
 			    }
-      //  window.draw(player.rectMap);
         window.draw(player.animation);
         window.display();
 
