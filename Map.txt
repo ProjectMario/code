@@ -1,0 +1,14 @@
+######################################################################################################
+#                                                                                                    #
+#                                                                                                    #
+#                                                                                                    #
+#                                                                                                    #
+#                                                                                                    #
+#                                                                                                    #
+#          BBB                                   L  L                         L                      #
+#     BBB       BBBB                            LL  LL          BBBB         LL                      #
+#                          12         12       LLL  LLL                     LLL                      #
+#                          34         34      LLLL  LLLL                   LLLL                      #
+#GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG#
+#GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG#
+######################################################################################################
