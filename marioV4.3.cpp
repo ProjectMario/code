@@ -62,6 +62,7 @@ public:
 		}
 
     rect.top += coorY * time;
+	  onGround = false;
 		collision(1);
     if(rect.top > ground)
     {
