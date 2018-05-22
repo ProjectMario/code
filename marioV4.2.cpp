@@ -224,7 +224,7 @@ int main()
         }
 			//	if(player.animation.getPosition().x > 1450)
 			//	{
-			//		text.setString("ты пидор");
+			//		text.setString("");
 			//		text.setPosition(view.getCenter().x, view.getCenter().y);
 			//		window.draw(text);
 			//	}
