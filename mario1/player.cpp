@@ -9,7 +9,7 @@ Player::Player(Texture &texture, Texture &mapTexture)
 {
   animation.setTexture(texture);
   animation.setTextureRect(IntRect(0, 18, 16, 16));
-  rect = FloatRect(0, 18, 16, 16);
+  rect = FloatRect(0, 140, 16, 16);
   coorX = coorY = 0;
   frameCounter = 0;
   rectMap.setTexture(mapTexture);

@@ -71,7 +71,7 @@ int main()
 		  }
 			else
 			{
-
+				player.animation.setColor(Color::Red);
 			}
       player.update(time);
 			for(unsigned int i = 0; i < Enemies.size(); i++)
@@ -88,12 +88,16 @@ int main()
 						 Enemies.at(i).x = 0;
 						 Enemies.at(i).isLife = false;
 					 }
+					 else
+					 	player.isLife = false;
 				 }
 			  }
 			}
 			window.setView(view);
       window.clear();
 			window.draw(player.rectMap);
+			for(unsigned int i = 0; i < Enemies.size(); i++)
+				window.draw(Enemies.at(i).enemySprite);
 			for(int i = 0 ; i < 12 ; i++)
 			{
 		    for(int j = 0 ; j < 100 ; j++)
@@ -137,8 +141,6 @@ int main()
 		      window.draw(mapSprite);
 		    }
 			}
-			for(unsigned int i = 0; i < Enemies.size(); i++)
-				window.draw(Enemies.at(i).enemySprite);
       window.draw(player.animation);
       window.display();
 
