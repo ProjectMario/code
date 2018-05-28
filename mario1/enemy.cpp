@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include "player.h"
 #include "enemy.h"
 
 using namespace std;
@@ -12,7 +13,21 @@ Enemy::Enemy(Texture& image, int dx, int dy)
   frameCounter = 0;
   isLife = true;
 }
-
+void Enemy::setX(float number)
+{
+  x = number;
+}
+bool Enemy::getIsLife()
+{
+  return isLife;
+}
+void Enemy::changeIsLife(int number)
+{
+  if(number == 1)
+    isLife = true;
+  if(number == 0)
+    isLife = false;
+}
 void Enemy::update(float time)
 {
   rect.left += x * time;
@@ -35,7 +50,7 @@ void Enemy::Collision()
   for(int i = rect.top / 16; i < (rect.top + rect.height) / 16; i++)
     for(int j = rect.left / 16; j < (rect.left + rect.width) / 16; j++)
   	{
-      if((TileMap[i][j] == 'G') || (TileMap[i][j] == '1') || (TileMap[i][j] == '2') || (TileMap[i][j] == '3') || (TileMap[i][j] == '4') || (TileMap[i][j] == 'L'))
+      if((Player::TileMap[i][j] == 'G') || (Player::TileMap[i][j] == '1') || (Player::TileMap[i][j] == '2') || (Player::TileMap[i][j] == '3') || (Player::TileMap[i][j] == '4') || (Player::TileMap[i][j] == 'L'))
   		{
         if(x > 0)
   			{

@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <iostream>
 #include "player.h"
 #include "enemy.h"
@@ -25,6 +26,11 @@ int main()
 	Sprite mapSprite;
 	mapSprite.setTexture(map);
 
+	//SoundBuffer buffer;
+	//buffer.loadFromFile("sound.m4a");
+	//Sound sound;
+	//sound.setBuffer(buffer);
+	//sound.play();
 	Texture animationOfEnemy;
 	animationOfEnemy.loadFromFile("image/Enemy.png");
 	Enemies.push_back(Enemy(animationOfEnemy, 560, 145));
@@ -45,26 +51,26 @@ int main()
           if(event.type == Event::Closed)
               window.close();
       }
-			if(player.isLife)
+			if(player.getIsLife())
 			{
         if(Keyboard::isKeyPressed(Keyboard::Left))
         {
-          player.coorX = -0.1;
-					player.direction = false;
+          player.setCoorX(-0.1);
+					player.changeDirection(0);
           player.setPlayerCoordForView(view);
         }
         if(Keyboard::isKeyPressed(Keyboard::Right))
         {
-          player.coorX = 0.1;
-					player.direction = true;
+          player.setCoorX(0.1);
+					player.changeDirection(1);
           player.setPlayerCoordForView(view);
         }
         if(Keyboard::isKeyPressed(Keyboard::Up))
         {
-          if(player.onGround)
+          if(player.getOnGround())
           {
-            player.coorY = -0.3;
-            player.onGround = false;
+            player.setCoorY(-0.3);
+            player.changeOnGround(0);
           }
           player.setPlayerCoordForView(view);
         }
@@ -80,16 +86,16 @@ int main()
 			{
 				if(player.rect.intersects(Enemies.at(i).rect))
 				{
-				 if(Enemies.at(i).isLife == true)
+				 if(Enemies.at(i).getIsLife() == true)
 				 {
-					 if(player.coorY > 0)
+					 if(player.getY() > 0)
 					 {
-						 player.coorY = -0.2;
-						 Enemies.at(i).x = 0;
-						 Enemies.at(i).isLife = false;
+						 player.setCoorY(-0.2);
+						 Enemies.at(i).setX(0);
+						 Enemies.at(i).changeIsLife(0);
 					 }
 					 else
-					 	player.isLife = false;
+					 	player.changeIsLife(0);
 				 }
 			  }
 			}
@@ -102,41 +108,24 @@ int main()
 			{
 		    for(int j = 0 ; j < 100 ; j++)
 				{
-		      if(player.TileMap[i][j] == 'G')
-					{
+		      if(Player::TileMap[i][j] == 'G')
 						mapSprite.setTextureRect(IntRect(34, 0, 16, 16));
-					}
-					if(player.TileMap[i][j] == 'B')
-					{
+					if(Player::TileMap[i][j] == 'B')
 						mapSprite.setTextureRect(IntRect(0, 0, 16, 16));
-					}
-					if(player.TileMap[i][j] == '1')
-					{
+					if(Player::TileMap[i][j] == '1')
 						mapSprite.setTextureRect(IntRect(0, 17, 16, 16));
-					}
-					if(player.TileMap[i][j] == '2')
-					{
+					if(Player::TileMap[i][j] == '2')
 						mapSprite.setTextureRect(IntRect(17, 17, 16, 16));
-					}
-					if(player.TileMap[i][j] == '3')
-					{
+					if(Player::TileMap[i][j] == '3')
 						mapSprite.setTextureRect(IntRect(34, 17, 16, 16));
-					}
-					if(player.TileMap[i][j] == '4')
-					{
+					if(Player::TileMap[i][j] == '4')
 						mapSprite.setTextureRect(IntRect(51, 17, 16, 16));
-					}
-					if(player.TileMap[i][j] == 'L')
-				 	{
+					if(Player::TileMap[i][j] == 'L')
 						mapSprite.setTextureRect(IntRect(17, 0, 16, 16));
-					}
-					if(player.TileMap[i][j] == 'C')
-				 	{
+					if(Player::TileMap[i][j] == 'C')
 						mapSprite.setTextureRect(IntRect(51, 0, 8, 8));
-					}
-		      if(player.TileMap[i][j] == ' ')
+		      if(Player::TileMap[i][j] == ' ')
 					 continue;
-
 		      mapSprite.setPosition(j*16, i*16);
 		      window.draw(mapSprite);
 		    }
@@ -145,6 +134,6 @@ int main()
       window.display();
 
   }
-
+	Enemies.clear();
   return 0;
 }
