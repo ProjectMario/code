@@ -98,8 +98,11 @@ int main()
 					player.animation.setPosition(player.rect.left, player.rect.top);
 					for(unsigned int i = 0; i < Enemies.size(); i++)
 					{
-						if(!Enemies.at(i).getIsLife())
-							Enemies.at(i).changeIsLife(1);
+						if(Enemies.at(i).getIsLife())
+							{
+								Enemies.at(i).changeIsLife(1);
+								Enemies.at(i).setX(0.05);
+							}
 					}
 				}
 			}

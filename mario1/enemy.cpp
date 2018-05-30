@@ -30,6 +30,7 @@ void Enemy::changeIsLife(int number)
 }
 void Enemy::update(float time)
 {
+  cout << x << endl;
   rect.left += x * time;
   Collision();
   frameCounter += time * 0.005;

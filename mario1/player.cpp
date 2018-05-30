@@ -19,21 +19,7 @@ sf::String Player::TileMap[12] =
   "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
   "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
 };
-sf::String Player::TileMap2[12]=
-{
-  "                                                                                                    ",
-  "                                                                                                    ",
-  "                                                                                                    ",
-  "                                                                                                    ",
-  "                                                                                                    ",
-  "           C                                                                 C                      ",
-  "      C   BBB    C                              L  L            C            L                      ",
-  "     BBB       BBBB                            LL  LL          BBBB         LL                      ",
-  "                          12         12       LLL  LLL                     LLL                      ",
-  "                          34         34      LLLL  LLLL                   LLLL                      ",
-  "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
-  "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
-};
+
 Player::Player(Texture &texture, Texture &mapTexture)
 {
   animation.setTexture(texture);
