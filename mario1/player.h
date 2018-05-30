@@ -9,6 +9,7 @@ private:
   float coorX, coorY, frameCounter;
 public:
   static sf::String TileMap[12];
+  static sf::String TileMap2[12];
   sf::FloatRect rect;
   sf::Sprite animation;
   sf::Sprite rectMap;
@@ -18,9 +19,11 @@ public:
   bool getIsLife();
   float getX();
   float getY();
+  int getScore();
   void setCoorX(float number);
   void setCoorY(float number);
   void increaseScore();
+  void increaseScoreMore(int number);
   void changeOnGround(int number);
   void changeDirection(int number);
   void changeIsLife(int number);

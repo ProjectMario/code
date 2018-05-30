@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <iostream>
+#include <sstream>
 #include "player.h"
 #include "enemy.h"
 using namespace sf;
@@ -10,8 +11,9 @@ using namespace std;
 int main()
 {
 	vector <Enemy> Enemies;
+
 	View view(Vector2f(170.0f, 96.0f), Vector2f(340.0f, 192.0f));
-  RenderWindow window(VideoMode(340, 192), "Mario");
+  RenderWindow window(VideoMode(340, 192), "Mario", sf::Style::Fullscreen);
 
   Texture animationTexture;
   animationTexture.loadFromFile("image/Animation.png");
@@ -26,11 +28,18 @@ int main()
 	Sprite mapSprite;
 	mapSprite.setTexture(map);
 
-	//SoundBuffer buffer;
-	//buffer.loadFromFile("sound.m4a");
-	//Sound sound;
-	//sound.setBuffer(buffer);
-	//sound.play();
+	Font font;
+	font.loadFromFile("OpenSans.ttf");
+	Text dieText(" ", font, 50);
+	dieText.setFillColor(sf::Color::Red);
+	dieText.setString("YOU DIE");
+	Text restart(" ", font, 8);
+	restart.setFillColor(sf::Color::Red);
+	restart.setString("press Esc to exit or Space to back to top");
+	sf::Text text(" ", font, 8);
+	text.setFillColor(sf::Color::Blue);
+	text.setStyle(sf::Text::Bold | sf::Text::Underlined);
+
 	Texture animationOfEnemy;
 	animationOfEnemy.loadFromFile("image/Enemy.png");
 	Enemies.push_back(Enemy(animationOfEnemy, 560, 145));
@@ -51,6 +60,10 @@ int main()
           if(event.type == Event::Closed)
               window.close();
       }
+			if(Keyboard::isKeyPressed(Keyboard::Escape))
+			{
+				window.close();
+			}
 			if(player.getIsLife())
 			{
         if(Keyboard::isKeyPressed(Keyboard::Left))
@@ -77,7 +90,18 @@ int main()
 		  }
 			else
 			{
-				player.animation.setColor(Color::Red);
+				if(Keyboard::isKeyPressed(Keyboard::Space))
+				{
+
+					player.changeIsLife(1);
+					player.rect = FloatRect(0, 140, 16, 16);
+					player.animation.setPosition(player.rect.left, player.rect.top);
+					for(unsigned int i = 0; i < Enemies.size(); i++)
+					{
+						if(!Enemies.at(i).getIsLife())
+							Enemies.at(i).changeIsLife(1);
+					}
+				}
 			}
       player.update(time);
 			for(unsigned int i = 0; i < Enemies.size(); i++)
@@ -93,6 +117,7 @@ int main()
 						 player.setCoorY(-0.2);
 						 Enemies.at(i).setX(0);
 						 Enemies.at(i).changeIsLife(0);
+						 player.increaseScoreMore(20);
 					 }
 					 else
 					 	player.changeIsLife(0);
@@ -131,6 +156,18 @@ int main()
 		    }
 			}
       window.draw(player.animation);
+			ostringstream playerScoreS;
+			playerScoreS << player.getScore();
+			text.setString("Scores: " + playerScoreS.str());
+			text.setPosition(view.getCenter().x - 165, view.getCenter().y - 95);
+			window.draw(text);
+			if(!player.getIsLife())
+			{
+				dieText.setPosition(view.getCenter().x - 90, view.getCenter().y - 50);
+				window.draw(dieText);
+				restart.setPosition(view.getCenter().x - 75, view.getCenter().y - 95);
+				window.draw(restart);
+			}
       window.display();
 
   }
