@@ -11,7 +11,7 @@ sf::String Player::TileMap[12] =
   "                                                                                                    ",
   "                                                                                                    ",
   "                                                                                                    ",
-  "           C                                                                                        ",
+  "           C                                                                 C                      ",
   "      C   BBB    C                              L  L            C            L                      ",
   "     BBB       BBBB                            LL  LL          BBBB         LL                      ",
   "                          12         12       LLL  LLL                     LLL                      ",
@@ -19,7 +19,21 @@ sf::String Player::TileMap[12] =
   "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
   "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
 };
-
+sf::String Player::TileMap2[12]=
+{
+  "                                                                                                    ",
+  "                                                                                                    ",
+  "                                                                                                    ",
+  "                                                                                                    ",
+  "                                                                                                    ",
+  "           C                                                                 C                      ",
+  "      C   BBB    C                              L  L            C            L                      ",
+  "     BBB       BBBB                            LL  LL          BBBB         LL                      ",
+  "                          12         12       LLL  LLL                     LLL                      ",
+  "                          34         34      LLLL  LLLL                   LLLL                      ",
+  "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
+  "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
+};
 Player::Player(Texture &texture, Texture &mapTexture)
 {
   animation.setTexture(texture);
@@ -47,6 +61,10 @@ float Player::getY()
 {
   return coorY;
 }
+int Player::getScore()
+{
+  return score;
+}
 void Player::setCoorX(float number)
 {
   coorX = number;
@@ -58,6 +76,10 @@ void Player::setCoorY(float number)
 void Player::increaseScore()
 {
   score++;
+}
+void Player::increaseScoreMore(int number)
+{
+  score += number;
 }
 void Player::changeOnGround(int number)
 {
