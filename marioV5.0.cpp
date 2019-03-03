@@ -187,6 +187,8 @@ int main()
 		Sprite mapSprite;
 		mapSprite.setTexture(map);
 
+		//как у тебя дела
+		
 /*sf::Font font;
  if(!font.loadFromFile("Fonts/OpenSans.ttf"))
  {
