@@ -188,7 +188,7 @@ int main()
 		mapSprite.setTexture(map);
 
 		//как у тебя дела
-		
+		//Федя Петух
 /*sf::Font font;
  if(!font.loadFromFile("Fonts/OpenSans.ttf"))
  {
